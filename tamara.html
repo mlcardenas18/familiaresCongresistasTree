@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>FW Tamara</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h4 class="my-0 mr-md-auto font-weight-normal">Congresistas con familiares contratando con estado</h4>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="/">Visualization</a>
+      <a class="p-2 text-dark" href="/tamara.html">Tamara</a>
+      <a class="p-2 text-dark" href="https://github.com/santiagoconde0/familiaresCongresistasTree">Code</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="card-deck mb-3 text-center">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">What?</h4>
+        </div>
+        <div class="card-body">
+          <p align="left"><b>Dataset: </b>
+            El Dataset es de Networks & Trees</p>
+          <p align="left"><b>Atributos: </b>
+            <ul>
+              <li align="left">Congresista: </li>
+              <p align="left">Categorical</p>
+              <li align="left">Votos: </li>
+              <p align="left">Ordered: quantitative</p>
+              <li align="left">Años como contratista: </li>
+              <p align="left">Ordered: ordinal - Sequential</p>
+              <li align="left">Vínculo: </li>
+              <p align="left">Categorical</p>
+              <li align="left">Número de contratos: </li>
+              <p align="left">Ordered: quantitative</p>
+              <li align="left">Valor total contratos: </li>
+              <p align="left">Ordered: quantitative</p>
+              <li align="left">Aportó a la campaña: </li>
+              <p align="left">Categorical</p>
+              <li align="left">Año financiación: </li>
+              <p align="left">Ordered: ordinal - Sequential</p>
+              <li align="left">Monto financiación: </li>
+              <p align="left">Ordered: Quantitative </p>
+            </ul>
+
+
+            <hr>
+            <i><p>los datos fueron proveidos por <a href="https://cuestionpublica.com/">Cuestión Pública</a></p></i>
+        </div>
+      </div>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Why?</h4>
+        </div>
+        <div class="card-body">
+          <p align="left"><b>Tarea principale: </b></p>
+
+          <ul>
+            <li align="left"><b>Explorar</b> las <b>características</b> de los contratos que tienen los familiares de los congresistas con el estado (En terminos de Tamara: <b>Explore</b> <b>Features</b> )</li>
+
+          </ul>
+
+          <p align="left"><b>Tareas secundarias: </b></p>
+          <ul>
+            <li align="left"><b>Resumir</b> la <b>distribución</b> de los congresistas que tienen familiares contratistas con el estado de manera <b>Divertida</b>(En terminos de Tamara: <b>Summarize</b> the <b>Distribution</b> with <b>Enjoy</b>)</li>
+            <li align="left"><b>Identificar</b> los valores de contratos <b>extremos</b> de los familiares de los congresitas (En terminos de Tamara: <b>Identify</b> <b>Extremes</b>)</li>
+            <li align="left"><b>Buscar</b> la <b>distribución</b> de los congresistas en la lista que tienen familiares contratando con el estado(En terminos de Tamara: <b>Browse</b> the <b>Distribution</b>)</li>
+            <li align="left"><b>Descubrir </b> la <b>dependencia</b> de los contratistas del estado con algunos congresistas(En terminos de Tamara: <b>Discover</b> the <b>Dependency</b>)</li>
+            <li align="left"><b>Descubrir </b> los <b>caminos</b> que forman los contratistas con los congresistas(En terminos de Tamara: <b>Discover</b> the <b>Path</b>)</li>
+          </ul>
+
+        </div>
+      </div>
+      <div class="card mb-4 shadow-sm s">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">How?</h4>
+        </div>
+        <div class="card-body">
+          <p align="left"><b>Marcas: </b></p>
+          <ul>
+            <li align="left"><b>Point: </b>Se utilizó lineas para representar los congresistas, contratistas y monto contratado </li>
+            <li align="left"><b>Line: </b>Se utilizó lineas para representar la relación(Vínculo familiar) de los congresistas con contratistas del estado </li>
+
+          </ul>
+          <p align="left"><b>Canales: </b></p>
+          <li align="left">Lines: Representan la relación de un congresista con un familiar contratando con el estado. </li>
+          <p></p>
+          <p align="left"><b>Encode: </b></p>
+          <li align="left"> <b>Express - Order - Align </b></li>
+          <p align="left"><b>Manipulate: </b></p>
+          <li align="left"> <b>Change: </b>El usuario puede cambiar el los datos que se visualizan en el arbol.</li>
+          <p align="left"><b>Reduce: </b></p>
+          <li align="left"><b>Filter: </b> se filtra por el congresista que se desea detallar.</li>
+          <ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Insight</h4>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li align = "left"> <b>David Barguil</b> es el congresista que más familiares tiene contratando con el estado.</li>
+          <li align = "left"> la empresa de la cual <b>Arturo Chart</b> es accionista tiene contraciones con el estado por un alto valor de contratación.</li>
+          <li align = "left"> <b>Lidio García</b> es el congresita que tiene el familiar con el valor de contrato más alto de la lista. </li>
+          <li align = "left"> <b>Antanas Mockus</b> ha sido contratista del estado.</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+
+    <footer>
+      <div align="center">
+        <small class="d-block mb-3 text-muted">&copy; Santiago Suárez Conde</small>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
