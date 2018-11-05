@@ -18,7 +18,7 @@ deploy on a server like http-server, Tomcat, nginx, etc.
 
 ## Authors
 
-[Santiago Suárez Conde] (https://github.com/santiagoconde0)
+[Santiago Suárez Conde](https://github.com/santiagoconde0)
 
 ## Demo link
 
@@ -28,9 +28,9 @@ https://santiagoconde0.github.io/familiaresCongresistasTree/
 
 
 #  FW Tamara
+![enter image description here](https://raw.githubusercontent.com/santiagoconde0/familiaresCongresistasTree/master/img/tamara.PNG)
 
-
-
+![enter image description here](https://raw.githubusercontent.com/santiagoconde0/familiaresCongresistasTree/master/img/insight.PNG)
 ## DATA
 
 * Los datos fueron proveidos por [Cuestion Pública](https://cuestionpublica.com/)
