@@ -2,6 +2,8 @@
 
 Arbol que muestra los detalles de los congresistas que tienen familiares en el congreso.
 
+![enter image description here](https://raw.githubusercontent.com/santiagoconde0/familiaresCongresistasTree/master/img/familiarescongresistastree.gif)
+
 # Technologies used
 
 * HTML 5
@@ -24,7 +26,7 @@ deploy on a server like http-server, Tomcat, nginx, etc.
 
 https://santiagoconde0.github.io/familiaresCongresistasTree/
 
-## [Video explanation](xxxxx)
+## [Video explanation](https://youtu.be/RkTpm7i8z78)
 
 
 #  FW Tamara
