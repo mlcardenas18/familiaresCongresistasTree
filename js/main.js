@@ -1,10 +1,11 @@
+// Obtener parametros del SVG que esta en el index
 var svg = d3.select("svg"),
   width = +svg.attr("width"),
   height = +svg.attr("height"),
   duration = 75,
   dy = width / 4,
-  dx = 40,
-  tree = d3.tree().nodeSize([dx, dy]),
+  dx = 40, // separacion entre nodos
+  tree = d3.tree().nodeSize([dx, dy]), // D3 Layout tree
   diagonal = d3.linkHorizontal().x(d => d.y).y(d => d.x)
 margin = ({
   top: 15,
@@ -13,8 +14,7 @@ margin = ({
   left: 105
 });
 
-var color = d3.scaleOrdinal(d3.schemeCategory10);
-
+// Se llaman los datos
 d3.csv("data/data.csv").then(function(data) {
 
   // Se hace nest para organizar los datos en jerarquias
@@ -35,6 +35,7 @@ d3.csv("data/data.csv").then(function(data) {
     values: nestData
   });
 
+// Se aplica Hirarchy para returnar los datos con estructura de jerarquia utilizada por D3
   const root = d3.hierarchy(nestedDataAsTree, d => d.values);
 
   root.x0 = dy / 2;
@@ -42,7 +43,7 @@ d3.csv("data/data.csv").then(function(data) {
   root.descendants().forEach((d, i) => {
     d.id = i;
     d._children = d.children;
-    if (d.depth === 1) {
+    if (d.depth === 1) {  //Set del arbol inicial y la cantidad de ramas que se mostrara
       d.children = null;
     } else {
       return;
@@ -56,7 +57,7 @@ d3.csv("data/data.csv").then(function(data) {
     .attr("stroke-opacity", 0.5)
     .attr("stroke-width", 1.5);
 
-  const gNode = svg.append("g")
+  const gNode = svg.append("g") // se crean los nodos
     .attr("cursor", "pointer");
 
   function update(source) {
@@ -64,7 +65,7 @@ d3.csv("data/data.csv").then(function(data) {
     const nodes = root.descendants().reverse();
     const links = root.links();
 
-    // Compute the new tree layout.
+    // Calculos para el nuevo Layout tree
     tree(root);
 
     let left = root;
@@ -74,7 +75,7 @@ d3.csv("data/data.csv").then(function(data) {
       if (node.x > right.x) right = node;
     });
 
-    const height = right.x - left.x + margin.top + margin.bottom;
+    const height = right.x - left.x + margin.top + margin.bottom; // Set margenes
 
     const transition = svg.transition()
       .duration(duration)
@@ -82,11 +83,11 @@ d3.csv("data/data.csv").then(function(data) {
       .attr("viewBox", [-margin.left, left.x - margin.top, width, height])
       .tween("resize", window.ResizeObserver ? null : () => () => svg.dispatch("toggle"));
 
-    // Update the nodes…
+    // Actualizar nodos
     const node = gNode.selectAll("g")
       .data(nodes, d => d.id);
 
-    // Enter any new nodes at the parent's previous position.
+    // Ingresar nodos nuevos
     const nodeEnter = node.enter().append("g")
       .attr("transform", d => `translate(${source.y0},${source.x0})`)
       .attr("fill-opacity", 0)
@@ -96,13 +97,14 @@ d3.csv("data/data.csv").then(function(data) {
         update(d);
       });
 
+//Ingresar circulos
     nodeEnter.append("circle")
       .attr("r", 10)
       .attr("fill", d => d._children ? "steelblue" : "white")
       .attr("stroke", "steelblue")
       .attr("stroke-width", "3px");
 
-
+    // Ingresar foto de congresistas
     nodeEnter.append("image")
       .attr('xlink:href', function(d) {
         if (d.depth === 1) {
@@ -120,6 +122,7 @@ d3.csv("data/data.csv").then(function(data) {
       .attr("width", 35)
       .attr("height", 35);
 
+// Ingresar Texto  en nodos
     nodeEnter.append("text")
       .attr("dy", "0.31em")
       .attr("x", function(d) {
@@ -132,7 +135,7 @@ d3.csv("data/data.csv").then(function(data) {
         if (d.depth < 3) {
           if (d.depth === 2) {
 
-            const words = d.data.key.split(/\s+/g); // To hyphenate: /\s+|(?<=-)/
+            const words = d.data.key.split(/\s+/g); // Ajustar tamanio para ingresar textos largos en una nueva linea
             if (!words[words.length - 2]) words.pop();
             if (!words[0]) words.shift();
             return words[0] + " " + words[1];
@@ -161,7 +164,7 @@ d3.csv("data/data.csv").then(function(data) {
       .text(function(d) {
         if (d.depth === 2) {
 
-          const words = d.data.key.split(/\s+/g); // To hyphenate: /\s+|(?<=-)/
+          const words = d.data.key.split(/\s+/g); // Ajustar tamanio para ingresar textos largos en una nueva linea
           if (!words[words.length - 2]) words.pop();
           if (!words[0]) words.shift();
           if (words[3] === undefined) {
@@ -188,7 +191,7 @@ d3.csv("data/data.csv").then(function(data) {
       .text(function(d) {
         if (d.depth === 2) {
 
-          const words = d.data.key.split(/\s+/g); // To hyphenate: /\s+|(?<=-)/
+          const words = d.data.key.split(/\s+/g); // Ajustar tamanio para ingresar textos largos en una nueva linea
           if (!words[words.length - 2]) words.pop();
           if (!words[0]) words.shift();
           if (words[4] === undefined) {
@@ -204,23 +207,24 @@ d3.csv("data/data.csv").then(function(data) {
       .attr("stroke-width", 5)
       .attr("stroke", "white");
 
-    // Transition nodes to their new position.
+    // Transition nodos a la nueva posicion
     const nodeUpdate = node.merge(nodeEnter).transition(transition)
       .attr("transform", d => `translate(${d.y},${d.x})`)
       .attr("fill-opacity", 1)
       .attr("stroke-opacity", 1);
 
-    // Transition exiting nodes to the parent's new position.
+    // Transition nodos existentes a una nueva posicion
     const nodeExit = node.exit().transition(transition).remove()
       .attr("transform", d => `translate(${source.y},${source.x})`)
       .attr("fill-opacity", 0)
       .attr("stroke-opacity", 0);
 
-    // Update the links…
+    // Actualizar links
     const link = gLink.selectAll("path")
       .data(links, d => d.target.id);
 
-    // Enter any new links at the parent's previous position.
+    // Ingresar nuevos links al parent de la posicion previa.
+
     const linkEnter = link.enter().append("path")
       .attr("d", d => {
         const o = {
@@ -233,11 +237,11 @@ d3.csv("data/data.csv").then(function(data) {
         });
       });
 
-    // Transition links to their new position.
+    // Cambio links a nuevas posiciones.
     link.merge(linkEnter).transition(transition)
       .attr("d", diagonal);
 
-    // Transition exiting nodes to the parent's new position.
+    // quitar nodos no seleccionados.
     link.exit().transition(transition).remove()
       .attr("d", d => {
         const o = {
@@ -250,7 +254,7 @@ d3.csv("data/data.csv").then(function(data) {
         });
       });
 
-    // Stash the old positions for transition.
+
     root.eachBefore(d => {
       d.x0 = d.x;
       d.y0 = d.y;
